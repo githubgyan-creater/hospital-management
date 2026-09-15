@@ -1,0 +1,15 @@
+# XAMPP / local files
+xampp/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
+
+# Temporary test files
+generate_password.php
+test_db.php
