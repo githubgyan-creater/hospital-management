@@ -8,6 +8,44 @@ if ($_SESSION["user_role"] !== "admin") {
 }
 
 require_once "../config/database.php";
+
+/*
+|--------------------------------------------------------------------------
+| Get Dashboard Counts
+|--------------------------------------------------------------------------
+*/
+
+$patientResult = $conn->query(
+    "SELECT COUNT(*) AS total FROM patients"
+);
+
+$patientCount = $patientResult->fetch_assoc()["total"];
+
+
+$doctorResult = $conn->query(
+    "SELECT COUNT(*) AS total FROM doctors"
+);
+
+$doctorCount = $doctorResult->fetch_assoc()["total"];
+
+
+$departmentResult = $conn->query(
+    "SELECT COUNT(*) AS total FROM departments"
+);
+
+$departmentCount = $departmentResult->fetch_assoc()["total"];
+
+
+$appointmentResult = $conn->query(
+    "SELECT COUNT(*) AS total
+     FROM appointments
+     WHERE appointment_date = CURDATE()"
+);
+
+$todayAppointmentCount =
+    $appointmentResult->fetch_assoc()["total"];
+
+
 require_once "../includes/header.php";
 
 ?>
@@ -29,15 +67,25 @@ require_once "../includes/header.php";
             <div class="d-flex justify-content-between align-items-center mb-4">
 
                 <div>
-                    <h2 class="fw-bold">Admin Dashboard</h2>
 
-                    <p class="text-muted">
+                    <h2 class="fw-bold mb-1">
+                        Admin Dashboard
+                    </h2>
+
+                    <p class="text-muted mb-0">
                         Welcome,
-                        <?php echo htmlspecialchars($_SESSION["user_name"]); ?>
+                        <?php
+                        echo htmlspecialchars(
+                            $_SESSION["user_name"]
+                        );
+                        ?>
                     </p>
+
                 </div>
 
-                <a href="logout.php" class="btn btn-danger">
+                <a
+                    href="logout.php"
+                    class="btn btn-danger">
                     Logout
                 </a>
 
@@ -48,9 +96,12 @@ require_once "../includes/header.php";
 
             <div class="row g-4">
 
+
+                <!-- Patients -->
+
                 <div class="col-md-6 col-xl-3">
 
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm border-0">
 
                         <div class="card-body">
 
@@ -59,7 +110,7 @@ require_once "../includes/header.php";
                             </h6>
 
                             <h2 class="fw-bold">
-                                0
+                                <?php echo $patientCount; ?>
                             </h2>
 
                         </div>
@@ -69,9 +120,11 @@ require_once "../includes/header.php";
                 </div>
 
 
+                <!-- Doctors -->
+
                 <div class="col-md-6 col-xl-3">
 
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm border-0">
 
                         <div class="card-body">
 
@@ -80,7 +133,7 @@ require_once "../includes/header.php";
                             </h6>
 
                             <h2 class="fw-bold">
-                                0
+                                <?php echo $doctorCount; ?>
                             </h2>
 
                         </div>
@@ -90,9 +143,11 @@ require_once "../includes/header.php";
                 </div>
 
 
+                <!-- Departments -->
+
                 <div class="col-md-6 col-xl-3">
 
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm border-0">
 
                         <div class="card-body">
 
@@ -101,7 +156,7 @@ require_once "../includes/header.php";
                             </h6>
 
                             <h2 class="fw-bold">
-                                0
+                                <?php echo $departmentCount; ?>
                             </h2>
 
                         </div>
@@ -111,9 +166,11 @@ require_once "../includes/header.php";
                 </div>
 
 
+                <!-- Today's Appointments -->
+
                 <div class="col-md-6 col-xl-3">
 
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm border-0">
 
                         <div class="card-body">
 
@@ -122,7 +179,7 @@ require_once "../includes/header.php";
                             </h6>
 
                             <h2 class="fw-bold">
-                                0
+                                <?php echo $todayAppointmentCount; ?>
                             </h2>
 
                         </div>
@@ -134,7 +191,7 @@ require_once "../includes/header.php";
             </div>
 
 
-            <!-- Welcome Message -->
+            <!-- Welcome Section -->
 
             <div class="card shadow-sm mt-4">
 
@@ -159,7 +216,6 @@ require_once "../includes/header.php";
     </div>
 
 </div>
-
 
 <?php
 

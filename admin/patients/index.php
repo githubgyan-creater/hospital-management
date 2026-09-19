@@ -10,6 +10,7 @@ if ($_SESSION["user_role"] !== "admin") {
 require_once "../../config/database.php";
 require_once "../../includes/header.php";
 
+
 ?>
 
 <div class="container-fluid">
@@ -23,6 +24,22 @@ require_once "../../includes/header.php";
 
         <!-- Main Content -->
         <div class="col-md-9 col-lg-10 p-4">
+
+        <?php if (isset($_GET["success"])): ?>
+
+    <div class="alert alert-success">
+        <?php echo htmlspecialchars($_GET["success"]); ?>
+    </div>
+
+<?php endif; ?>
+
+<?php if (isset($_GET["error"])): ?>
+
+    <div class="alert alert-danger">
+        <?php echo htmlspecialchars($_GET["error"]); ?>
+    </div>
+
+<?php endif; ?>
 
             <div class="d-flex justify-content-between align-items-center mb-4">
 
