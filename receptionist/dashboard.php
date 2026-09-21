@@ -41,7 +41,7 @@ require_once "../includes/header.php";
 
                 </div>
 
-                <a href="../admin/logout.php" class="btn btn-danger">
+                <a href="../logout.php" class="btn btn-danger">
                     Logout
                 </a>
 

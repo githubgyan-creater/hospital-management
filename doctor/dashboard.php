@@ -52,7 +52,7 @@ require_once "../includes/header.php";
 
 
                 <a
-                    href="../admin/logout.php"
+                    href="../logout.php"
                     class="btn btn-danger">
 
                     Logout
@@ -88,6 +88,37 @@ require_once "../includes/header.php";
 
             <div class="row">
 
+            <!-- My Profile Card -->
+
+<div class="col-md-6 mb-4">
+
+    <div class="card shadow-sm h-100">
+
+        <div class="card-body">
+
+            <h4 class="fw-bold">
+                My Profile
+            </h4>
+
+            <p class="text-muted">
+
+                View and update your doctor profile details.
+
+            </p>
+
+            <a
+                href="profile/index.php"
+                class="btn btn-info">
+
+                View My Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div> 
 
                 <!-- Appointments Card -->
 
